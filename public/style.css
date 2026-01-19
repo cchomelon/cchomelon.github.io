@@ -15,7 +15,7 @@
 
 .font-mono  { font-family: "Courier New", monospace; }
 
-.font-DOS { font-family: "Perfect DOS VGA 437", monospace; font-size: 10px;}
+.font-DOS { font-family: "Perfect DOS VGA 437", monospace; font-size: 9px;}
 
 @font-face {
     font-family: "Perfect DOS VGA 437";
