@@ -1,6 +1,6 @@
 :root {
   --ink: #1b1b1b;
-  --paper: #f9f2e4;
+  --paper: #f8f3d7;
   --panel: #ffffff;
   --border: #2c4b7a;
   --accent: #5196db;
@@ -14,6 +14,18 @@
 .font-serif { font-family:  "Times New Roman", "Georgia", serif; }
 
 .font-mono  { font-family: "Courier New", monospace; }
+
+.font-DOS { font-family: "Perfect DOS VGA 437", monospace; font-size: 10px;}
+
+@font-face {
+    font-family: "Perfect DOS VGA 437";
+    src:
+        url("/fonts/PerfectDOSVGA437.woff2") format("woff2"),
+        url("/fonts/PerfectDOSVGA437.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 
 
 * {
