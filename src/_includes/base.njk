@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{{ title or "My Retro Blog" }}</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <table width="760" align="center" border="1" cellpadding="10">
+    <tr>
+      <td>
+        <marquee>Welcome to my website</marquee>
+        <hr>
+        {{ content | safe }}
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
