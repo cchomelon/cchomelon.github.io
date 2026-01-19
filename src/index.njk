@@ -4,10 +4,13 @@ title: Home
 ---
 
 {% set latest = (collections.post | reverse | first) %}
+{% set statusMarkdown = "**Status**: I am in your extended network." %}
 
 <div class="profile-header">
-  <div class="profile-name">Tom</div>
-  <div class="profile-status">:-)</div>
+  <div class="profile-name">
+    <span class="font-serif">schizo</span><span class="font-mono">posting</span>
+  </div>
+  <div class="profile-status"><span class="font-mono">0x5F3759DF</span></div>
 </div>
 
 <div class="columns">
@@ -27,6 +30,9 @@ title: Home
         </div>
         <div class="profile-links">
           <a href="#">View Pics</a>
+        </div>
+        <div class="status-note">
+          {{ statusMarkdown | markdownify | safe }}
         </div>
       </div>
     </div>
@@ -62,11 +68,5 @@ title: Home
       </div>
     </div>
 
-    <div class="panel">
-      <div class="panel-title">Status</div>
-      <div class="panel-body">
-        I am in your extended network.
-      </div>
-    </div>
   </main>
 </div>

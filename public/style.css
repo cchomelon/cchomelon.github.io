@@ -3,10 +3,18 @@
   --paper: #f9f2e4;
   --panel: #ffffff;
   --border: #2c4b7a;
-  --accent: #367bc1;
+  --accent: #5196db;
   --accent-dark: #367bc1;
   --shadow: rgba(0, 0, 0, 0.2);
+  --frame-top-gap: 8px;
+  --frame-bottom-gap: 8px;
+  --latest-scroll-height: 52vh;
 }
+
+.font-serif { font-family:  "Times New Roman", "Georgia", serif; }
+
+.font-mono  { font-family: "Courier New", monospace; }
+
 
 * {
   box-sizing: border-box;
@@ -17,15 +25,34 @@ body {
   background: linear-gradient(135deg, #d8e5f2 0%, #f4efe6 55%, #e6f2f7 100%);
   color: var(--ink);
   font-family: "Trebuchet MS", "Verdana", sans-serif;
+  min-height: 100vh;
+  border-bottom: 4px solid var(--border);
+  overflow: auto;
 }
 
 .page-frame {
-  margin: 24px auto;
-  width: 80%;
-  max-width: 1100px;
+  margin: var(--frame-top-gap) auto var(--frame-bottom-gap);
+  width: 90%;
+  max-width: 1200px;
+  height: auto;
   border: 2px solid var(--border);
   background: var(--paper);
   box-shadow: 0 8px 0 var(--accent-dark), 0 14px 24px var(--shadow);
+}
+
+.page-frame td {
+  padding: 10px 12px 10px;
+}
+
+.page-frame hr {
+  margin: 4px 0 8px;
+}
+
+.page-frame marquee {
+  display: block;
+  margin: 0 0 4px;
+  font-size: 10px;
+  line-height: 1.2;
 }
 
 marquee {
@@ -37,15 +64,16 @@ marquee {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: 8px 12px;
+  padding: 8px 10px;
   background: var(--accent);
   border: 2px solid var(--border);
-  font-family: "Impact", "Arial Black", sans-serif;
+  font-family: "Arial Black", sans-serif;
+  color: #000023;
   letter-spacing: 0.5px;
 }
 
 .profile-name {
-  font-size: 28px;
+  font-size: 20px;
 }
 
 .profile-status {
@@ -57,18 +85,38 @@ marquee {
   grid-template-columns: 260px 1fr;
   gap: 16px;
   margin-top: 12px;
+  height: auto;
+  overflow: visible;
 }
 
 .sidebar {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  position: sticky;
+  top: 12px;
+  align-self: start;
 }
 
 .content {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  height: 100%;
+  overflow: visible;
+  padding-right: 0;
+}
+
+.content > .panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.content > .panel > .panel-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .panel {
@@ -110,10 +158,10 @@ marquee {
 }
 
 .profile-photo-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .profile-meta {
@@ -124,6 +172,17 @@ marquee {
 .profile-links {
   margin-top: 10px;
   font-size: 12px;
+}
+
+.status-note {
+  margin-top: 12px;
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 13px;
+  color: #2a2a2a;
+}
+
+.status-note p {
+  margin: 0;
 }
 
 .post-list {
@@ -167,6 +226,13 @@ marquee {
   margin: 0 0 12px;
 }
 
+.latest-content {
+  flex: 1;
+  max-height: none;
+  overflow: visible;
+  padding: 0 0 8px 0;
+}
+
 a {
   color: #0b3a6b;
 }
@@ -179,9 +245,22 @@ a:hover {
   .page-frame {
     width: calc(100% - 24px);
     max-width: none;
+    height: auto;
   }
 
   .columns {
     grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .content {
+    overflow: visible;
+    padding-right: 0;
+  }
+
+  .latest-content {
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
   }
 }
