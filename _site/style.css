@@ -36,10 +36,13 @@ body {
   margin: 0;
   background: linear-gradient(135deg, #d8e5f2 0%, #f4efe6 55%, #e6f2f7 100%);
   color: var(--ink);
-  font-family: "Trebuchet MS", "Verdana", sans-serif;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC",
+    "Microsoft YaHei", "Trebuchet MS", "Verdana", sans-serif;
   min-height: 100vh;
   border-bottom: 4px solid var(--border);
   overflow: auto;
+  line-break: strict;
+  word-break: break-word;
 }
 
 .page-frame {
@@ -150,7 +153,7 @@ marquee {
 .panel-body {
   padding: 12px;
   font-size: 14px;
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 .profile-card {
@@ -243,6 +246,38 @@ marquee {
   max-height: none;
   overflow: visible;
   padding: 0 0 8px 0;
+  text-justify: inter-character;
+  font-feature-settings: "kern";
+}
+
+.latin-text {
+  font-family: "Times New Roman", "Georgia", serif;
+  line-height: 1.5;
+  font-feature-settings: "kern", "liga";
+}
+
+blockquote {
+  margin: 10px 0;
+  padding: 1px 0 0px 12px;
+  border-left: 4px solid #cfd8e3;
+  color: #2b2b2b;
+  font-family: "Times New Roman", "Georgia", "PingFang SC", "Hiragino Sans GB",
+    "Noto Sans CJK SC", "Microsoft YaHei", serif;
+  font-size: 15px;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+blockquote p + p {
+  margin-top: 6px;
+}
+
+blockquote br {
+  line-height: 0;
 }
 
 a {
