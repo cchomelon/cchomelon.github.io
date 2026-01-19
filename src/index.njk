@@ -5,6 +5,7 @@ title: Home
 
 {% set latest = (collections.post | reverse | first) %}
 {% set statusMarkdown = "**Status**: I am in your extended network." %}
+{% set tocItems = latest and (latest.templateContent | tocFromHtml) %}
 
 <div class="profile-header">
   <div class="profile-name">
@@ -36,6 +37,23 @@ title: Home
         </div>
       </div>
     </div>
+
+    <details class="panel toc-panel" open>
+      <summary class="panel-title">Table of Contents</summary>
+      <div class="panel-body">
+        {% if tocItems and (tocItems | length) %}
+          <ul class="toc-list">
+            {% for item in tocItems %}
+              <li class="toc-item level-{{ item.level }}">
+                <a href="#{{ item.id }}">{{ item.text }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <div class="toc-empty">No headings yet.</div>
+        {% endif %}
+      </div>
+    </details>
 
     <div class="panel">
       <div class="panel-title">Blog Index</div>

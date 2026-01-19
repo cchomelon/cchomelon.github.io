@@ -156,6 +156,68 @@ marquee {
   line-height: 1.45;
 }
 
+.toc-panel {
+  overflow: hidden;
+}
+
+.toc-panel summary {
+  list-style: none;
+  cursor: pointer;
+  position: relative;
+  padding-right: 22px;
+}
+
+.toc-panel summary::-webkit-details-marker {
+  display: none;
+}
+
+.toc-panel summary::after {
+  content: "+";
+  position: absolute;
+  right: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border: 1px solid #1f3f66;
+  background: #e1e0e0;
+  color: #1f3f66;
+  font-size: 11.5px;
+  line-height: 10.5px;
+  text-align: center;
+  padding-left: 0.5px;
+  font-weight: 900;
+  box-shadow: inset 1.2px 1.2px 0 #ffffff;
+}
+
+.toc-panel[open] summary::after {
+  content: "-";
+}
+
+.toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.toc-item {
+  margin: 4px 0;
+  font-size: 12px;
+}
+
+.toc-item.level-3 {
+  padding-left: 10px;
+}
+
+.toc-item.level-4 {
+  padding-left: 18px;
+}
+
+.toc-empty {
+  color: #5b6a7d;
+  font-size: 12px;
+}
+
 .profile-card {
   display: grid;
   grid-template-columns: 90px 1fr;
