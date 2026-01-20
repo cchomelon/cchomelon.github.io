@@ -68,7 +68,7 @@ han: false
       <div class="panel-body">
         <div class="category-list">
           {% for group in categoryGroups %}
-            <details class="category-group" open>
+            <details class="category-group" open data-ui="plain">
               <summary class="category-title">{{ group.category }}</summary>
               <ul class="post-list">
                 {% for post in group.items %}

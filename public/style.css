@@ -342,10 +342,28 @@ marquee {
   background: transparent;
   color: #1f3f66;
   list-style: none;
+  position: relative;
+  padding-left: 18px;
 }
 
 .category-title::-webkit-details-marker {
   display: none;
+}
+
+.category-title::before {
+  content: "+";
+  position: absolute;
+  left: 0;
+  top: 1px;
+  font-weight: bold;
+}
+
+.category-group[open] .category-title::before {
+  content: "-";
+}
+
+.category-group[data-ui="plain"] > summary::after {
+  content: none;
 }
 
 .category-group .post-list {
@@ -411,6 +429,15 @@ a:hover {
   .content {
     overflow: visible;
     padding-right: 0;
+    height: auto;
+  }
+
+  .content > .panel {
+    flex: none;
+  }
+
+  .content > .panel > .panel-body {
+    height: auto;
   }
 
   .sidebar {
