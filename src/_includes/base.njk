@@ -1,18 +1,49 @@
 <!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>{{ title or "My Blog" }}</title>
-  <link rel="stylesheet" href="{{ '/style.css' | url }}">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-</head>
-<body>
-  <table class="page-frame" width="80%" align="center" border="1">
-    <tr>
-      <td>
-        {{ content | safe }}
-      </td>
-    </tr>
-  </table>
-</body>
+<html lang="{{ lang or "zh-Hant" }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title or "My Blog" }}</title>
+    <link rel="stylesheet" href="{{ '/han.min.css' | url }}">
+    <link rel="stylesheet" href="{{ '/style.css' | url }}">
+    <link rel="stylesheet" href="{{ '/github-markdown.css' | url }}">
+    <link rel="stylesheet" href="{{ '/markdown.css' | url }}">
+    <link rel="stylesheet" href="{{ '/physics.css' | url }}">
+    <link rel="stylesheet" href="{{ '/syntax.css' | url }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <link rel="stylesheet" href="https://fred-wang.github.io/MathFonts/NewComputerModern/mathfonts.css" />
+    <link rel="stylesheet" href="https://rawcdn.githack.com/iliakonnov/linlibertine/adbbf477b8e554087bf8a9856c494d1656b55900/linlibertine.css" integrity="sha384-vnKhUa5fs2wlv0J+dROs23QJaYX/31FIsBR2QCxiq/hAb3/J6BYVN0FZIwtN7tM5" crossorigin="anonymous">
+    <script src="//unpkg.com/han-css/dist/han.min.js" defer></script>
+  </head>
+  <body>
+    <table class="page-frame" width="80%" align="center" border="1">
+      <tr>
+        <td>
+          {% if han is defined and not han %}
+            {{ content | safe }}
+          {% else %}
+            {% set typography = categories | typographyConfig %}
+            {% if typography.useHan %}
+              <div class="han-init-context{% if typography.hanClass %} {{ typography.hanClass }}{% endif %}">
+                {{ content | safe }}
+              </div>
+            {% else %}
+              <div class="{{ typography.wrapperClass }}">
+                {{ content | safe }}
+              </div>
+            {% endif %}
+          {% endif %}
+        </td>
+      </tr>
+    </table>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        if (window.Han) {
+          document.querySelectorAll(".han-init-context").forEach((element) => {
+            Han(element).render();
+          });
+        }
+      });
+    </script>
+  </body>
 </html>

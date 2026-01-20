@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shallow-Water Equation for busy people</title>
+    <link rel="stylesheet" href="/han.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/github-markdown.css">
+    <link rel="stylesheet" href="/markdown.css">
+    <link rel="stylesheet" href="/physics.css">
+    <link rel="stylesheet" href="/syntax.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <link rel="stylesheet" href="https://fred-wang.github.io/MathFonts/NewComputerModern/mathfonts.css" />
+    <link rel="stylesheet" href="https://rawcdn.githack.com/iliakonnov/linlibertine/adbbf477b8e554087bf8a9856c494d1656b55900/linlibertine.css" integrity="sha384-vnKhUa5fs2wlv0J+dROs23QJaYX/31FIsBR2QCxiq/hAb3/J6BYVN0FZIwtN7tM5" crossorigin="anonymous">
+    <script src="//unpkg.com/han-css/dist/han.min.js" defer></script>
+  </head>
+  <body>
+    <table class="page-frame" width="80%" align="center" border="1">
+      <tr>
+        <td>
+          
+            
+            
+              <div class="typo-physics">
+                <h2 id="mathematical-model" tabindex="-1">Mathematical Model</h2>
+<p>The 2D shallow water system for the free-surface flow with the Coriolis effect and bottom friction stress is formulated as,</p>
+<p class='katex-block'><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><mo fence="true">{</mo><mtable rowspacing="0.36em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi mathvariant="normal">∂</mi><mi>t</mi></msub><mi>h</mi><mo>+</mo><mi mathvariant="normal">∇</mi><mo>⋅</mo><mo stretchy="false">(</mo><mi>h</mi><mi mathvariant="bold">u</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn><mo separator="true">,</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><msub><mi mathvariant="normal">∂</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi>h</mi><mi mathvariant="bold">u</mi><mo stretchy="false">)</mo><mo>+</mo><mi mathvariant="normal">∇</mi><mo>⋅</mo><mo stretchy="false">(</mo><mi>h</mi><mi mathvariant="bold">u</mi><mo>⊗</mo><mi mathvariant="bold">u</mi><mo stretchy="false">)</mo><mo>+</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi mathvariant="normal">∇</mi><mo stretchy="false">(</mo><mi>g</mi><msup><mi>h</mi><mn>2</mn></msup><mo stretchy="false">)</mo><mo>=</mo><mo>−</mo><mi>g</mi><mi>h</mi><mi mathvariant="normal">∇</mi><mi>Z</mi><mo>−</mo><msub><mi>f</mi><mi>c</mi></msub><mo>×</mo><mi>h</mi><mi mathvariant="bold">u</mi><mo>−</mo><mi>r</mi><mo stretchy="false">(</mo><mi>h</mi><mo separator="true">,</mo><mi mathvariant="bold">u</mi><mo stretchy="false">)</mo><mo separator="true">,</mo></mrow></mstyle></mtd></mtr></mtable></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(1)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{cases}
+\partial_t h + \nabla \cdot (h \mathbf{u}) = 0, \\
+\partial_t (h \mathbf{u}) + \nabla \cdot (h \mathbf{u} \otimes \mathbf{u}) + \frac{1}{2} \nabla (g h^2) = -g h \nabla Z - f_c \times h \mathbf{u} - r(h, \mathbf{u}),
+\end{cases}
+\tag{1}
+</annotation></semantics></math></span></p>
+<p>where the unknowns are always the water height <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>h</mi><mo stretchy="false">(</mo><mi>t</mi><mo separator="true">,</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">h(t,x,y) \geq 0</annotation></semantics></math></span> and the horizontal speed mean <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="bold">u</mi><mo stretchy="false">(</mo><mi>t</mi><mo separator="true">,</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\mathbf{u}(t,x,y)</annotation></semantics></math></span>. The parameter <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>f</mi><mi>c</mi></msub></mrow><annotation encoding="application/x-tex">f_c</annotation></semantics></math></span> is linked to the angular speed of the earth's rotation, and <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo stretchy="false">(</mo><mi>h</mi><mo separator="true">,</mo><mi mathvariant="bold">u</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">r(h,\mathbf{u})</annotation></semantics></math></span> is the dissipative term, such as friction, etc. Say for Manning roughness,</p>
+<p class='katex-block'><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>r</mi><mo stretchy="false">(</mo><mi>h</mi><mo separator="true">,</mo><mi mathvariant="bold">u</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>η</mi><mn>2</mn></msup><mi>g</mi><msup><mi>h</mi><mrow><mo>−</mo><mn>1</mn><mi mathvariant="normal">/</mi><mn>3</mn></mrow></msup><mi mathvariant="normal">∣</mi><mi mathvariant="bold">u</mi><mi mathvariant="normal">∣</mi><mi mathvariant="bold">u</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">r(h,\mathbf{u}) = \eta^2 g h^{-1/3} |\mathbf{u}|\mathbf{u}.
+</annotation></semantics></math></span></p>
+<p>We can also add surface wind effect. The viscosity term for the turbulence closure problem, in this case, the momentum equation of <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(1)</annotation></semantics></math></span> becomes</p>
+<p class='katex-block'><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable width="100%"><mtr><mtd width="50%"></mtd><mtd><mrow><msub><mi mathvariant="normal">∂</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi>h</mi><mi mathvariant="bold">u</mi><mo stretchy="false">)</mo><mo>+</mo><mi mathvariant="normal">∇</mi><mo>⋅</mo><mo stretchy="false">(</mo><mi>h</mi><mi mathvariant="bold">u</mi><mo>⊗</mo><mi mathvariant="bold">u</mi><mo stretchy="false">)</mo><mo>+</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mi mathvariant="normal">∇</mi><mo stretchy="false">(</mo><mi>g</mi><msup><mi>h</mi><mn>2</mn></msup><mo stretchy="false">)</mo><mo>=</mo><mo>−</mo><mi>g</mi><mi>h</mi><mi mathvariant="normal">∇</mi><mi>Z</mi><mo>−</mo><msub><mi>f</mi><mi>c</mi></msub><mo>×</mo><mi>h</mi><mi mathvariant="bold">u</mi><mo>−</mo><mi>r</mi><mo stretchy="false">(</mo><mi>h</mi><mo separator="true">,</mo><mi mathvariant="bold">u</mi><mo stretchy="false">)</mo><mo>+</mo><mi>τ</mi><mo stretchy="false">(</mo><mi>h</mi><mo separator="true">,</mo><mover accent="true"><mi mathvariant="bold">u</mi><mo>~</mo></mover><mo stretchy="false">)</mo><mo>+</mo><mi>ν</mi><mi mathvariant="normal">Δ</mi><mi>h</mi><mi mathvariant="bold">u</mi><mo separator="true">,</mo></mrow></mtd><mtd width="50%"></mtd><mtd><mtext>(2)</mtext></mtd></mtr></mtable><annotation encoding="application/x-tex">\partial_t (h \mathbf{u}) + \nabla \cdot (h \mathbf{u} \otimes \mathbf{u}) + \frac{1}{2} \nabla (g h^2) = -g h \nabla Z - f_c \times h \mathbf{u} - r(h, \mathbf{u}) + \tau(h, \mathbf{\tilde{u}}) + \nu \Delta h \mathbf{u},
+\tag{2}
+</annotation></semantics></math></span></p>
+<p>where <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msub><mi>C</mi><mi>D</mi></msub><mi mathvariant="normal">∣</mi><mi mathvariant="bold">u</mi><mi mathvariant="normal">∣</mi><mi mathvariant="bold">u</mi></mrow><annotation encoding="application/x-tex">\tau=\frac{1}{2} C_D |\mathbf{u}|\mathbf{u}</annotation></semantics></math></span>. For simplicity, we rewrite system <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>2</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(2)</annotation></semantics></math></span> in a conservative vectorial form,</p>
+
+              </div>
+            
+          
+        </td>
+      </tr>
+    </table>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        if (window.Han) {
+          document.querySelectorAll(".han-init-context").forEach((element) => {
+            Han(element).render();
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
