@@ -39,12 +39,10 @@ categories: ["Philosophy"]
 
 話説回來，在AO中，「對象a」這個詞出現了兩次（雖然總是着伴隨 Kleine 的「{% ruby "部分對象", "l’objet partiel" %}」），但卻沒有提到來自他早期著作《差異與重複》的「{% ruby "潛在對象", "l’objet virtuel (objet=x)" %}」。
 
-> 拉岡則相反，他甚至將神經症分裂症化，解放了能夠顛覆精神分析領域的分裂症流動。拉康所謂的〈對象a〉，作為地獄機器〔定時炸彈〕侵入結構論平衡的中心。那就是慾望機器。
-> 
-> L'admirable théorie du désir chez Lacan nous semble avoir deux pôles : l'un par rapport à « l'objet petit-a » comme machine désirante, qui définit le désir par une production réelle, dépassant toute idée de besoin et aussi de fantasme; l'autre par rapport au « grand Autre ,. comme signifiant, qui réintroduit une certaine idée de manque.
+拉岡則相反，他甚至將神經症分裂症化，解放了能夠顛覆精神分析領域的分裂症流動。拉康所謂的〈對象a〉，作為地獄機器〔定時炸彈〕侵入結構論平衡的中心。那就是慾望機器。
 
-拉岡*那令人讚嘆的慾望理論，在我們看來似乎有兩個極點：其一與作為慾望機器的「對象a」相關，它通過{% ruby "現實的生產", "production réelle" %}來規定慾望，超越了任何需求或幻想的觀念；另一極則與作為能指的「大〈他者〉」相關，重新引入了某種欠缺的觀念。
 
+>拉岡那令人讚嘆的慾望理論，在我們看來似乎有兩個極點：其一與作為慾望機器的「對象a」相關，它通過{% ruby "現實的生產", "production réelle" %}來規定慾望，超越了任何需求或幻想的觀念；另一極則與作為能指的「大〈他者〉」相關，重新引入了某種欠缺的觀念。
 > L'admirable théorie du désir chez Lacan nous semble avoir deux pôles : l'un par rapport à « l'objet petit-a » comme machine désirante, qui définit le désir par une production réelle, dépassant toute idée de besoin et aussi de fantasme; l'autre par rapport au « grand Autre ,. comme signifiant, qui réintroduit une certaine idée de manque.
 > 
 
@@ -68,12 +66,12 @@ categories: ["Philosophy"]
 
 德勒茲 通過寫下「部分對象的機器（衝動）／被強制運動的機器（死亡）」，也可以被視為認知到了對象a的兩個側面。
 
-也有人認為與 Guattari 合作時期寫下的《AO》是德勒茲的退步：
+也有人認為與瓜塔利合作時期寫下的《AO》是德勒茲的退步：
 
 > 毫無疑問，《AO》這本德勒茲最糟糕的書，難道不是通過簡化的「平面式」解決方案，從與僵局的充分遭遇中逃跑的結果嗎？
 > ——齊澤克
 
-> 當時所謂的敵人，毫無疑問就是精神分析，傅柯優雅地避開了精神分析，但德勒茲沒有採取那種避開方式。取而代之的是，不管多麼異質都好，把瓜塔里找來，一起寫了《AO》。那樣一來，代價是沒能成為優雅的文本，而是以充滿暴力且危險的形式發揮作用了吧。這一點德勒茲是看得很清楚的。
+> 當時所謂的敵人，毫無疑問就是精神分析，福柯優雅地避開了精神分析，但德勒茲沒有採取那種避開方式。取而代之的是，不管多麼異質都好，把瓜塔里找來，一起寫了《AO》。那樣一來，代價是沒能成為優雅的文本，而是以充滿暴力且危險的形式發揮作用了吧。這一點德勒茲是看得很清楚的。
 > ——蓮實重彥
 
 > 72年的時候，我也許說過我反對佛洛伊德，但在93年，我也許會像說自己是完美的馬克思主義者一樣，說自己是完美的佛洛伊德主義者。因為他思考的不是概念的分類，而是其在現實中的機能。
@@ -101,9 +99,6 @@ Zupančič則認為，實在界對{% ruby "巴迪歐", "Badiou" %}而言涉及�
 > 
 > 米勒恰恰是以德勒茲式的方式（字面意義上重覆《AO》的定式），在談論佛洛伊德無意識「地下 beneath」的「真正的」前伊底帕斯式無意識。就好像，我們最初擁有「純粹的」前伊底帕斯式驅力的運動，然後有拉康的{% ruby "牙牙語", "lalangue" %}所洗禮的象徵的物質與享樂的直接滲透一樣。
 > ——Marx and Lacan: Surplus-Enjoyment, Surplus-Value, Surplus-Knowledge
-> 
-
-※基本的創傷定義（佛洛伊德・拉岡派的觀點）
 
 拉岡在 S.XI 裏討論了亞里士多德的 automaton (αủτoματov) vs. tuchè (τuχη)：
 
