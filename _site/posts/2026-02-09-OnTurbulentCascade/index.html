@@ -13,17 +13,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
     <link rel="stylesheet" href="https://fred-wang.github.io/MathFonts/NewComputerModern/mathfonts.css" />
     <link rel="stylesheet" href="https://rawcdn.githack.com/iliakonnov/linlibertine/adbbf477b8e554087bf8a9856c494d1656b55900/linlibertine.css" integrity="sha384-vnKhUa5fs2wlv0J+dROs23QJaYX/31FIsBR2QCxiq/hAb3/J6BYVN0FZIwtN7tM5" crossorigin="anonymous">
-    <script src="//unpkg.com/han-css/dist/han.min.js" defer></script>
+    <script src="https://unpkg.com/han-css/dist/han.min.js" defer></script>
   </head>
   <body>
-    <table class="page-frame" width="80%" align="center" border="1">
-      <tr>
-        <td>
-          
-            
-            
-              <div class="typo-physics">
-                <p>The usual Kolmogorov-Richardson Cascade has long been a well-received picture, a phenomenological one, not a theorem. In 3D incompressible turbulence, the forward cascade is what one typically see on average, as the nonlinear dynamics have many efficient channels moving energy downscale. But those same equations can also contain hidden channels moving energy upscale.</p>
+    <div class="page-frame">
+      
+        <div class="typo-physics">
+          <p>The usual Kolmogorov-Richardson Cascade has long been a well-received picture, a phenomenological one, not a theorem. In 3D incompressible turbulence, the forward cascade is what one typically see on average, as the nonlinear dynamics have many efficient channels moving energy downscale. But those same equations can also contain hidden channels moving energy upscale.</p>
 <h2 id="parity-symmetry-and-helicity" tabindex="-1">Parity symmetry and helicity</h2>
 <p>Consider the incompressible Navier-Stokes for velocity <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">u(x,t)</annotation></semantics></math></span>:</p>
 <p class='katex-block'><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi mathvariant="normal">∂</mi><mi>t</mi></msub><mi mathvariant="bold">u</mi><mo>+</mo><mo stretchy="false">(</mo><mi mathvariant="bold">u</mi><mo>⋅</mo><mi mathvariant="normal">∇</mi><mo stretchy="false">)</mo><mi mathvariant="bold">u</mi><mo>=</mo><mo>−</mo><mi mathvariant="normal">∇</mi><mi>p</mi><mi mathvariant="normal">/</mi><mi>ρ</mi><mo>+</mo><mi>ν</mi><mi mathvariant="normal">Δ</mi><mi mathvariant="bold">u</mi><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">\partial_{t} \mathbf{u}+(\mathbf{u}\cdot \nabla)\mathbf{u} = -\nabla p/\rho + \nu \Delta \mathbf{u}.
@@ -94,7 +90,7 @@ Their spectra show large-scale energy growth and a Kolmogorov-like <span class="
   <figcaption><a href="https://ar5iv.labs.arxiv.org/html/1111.1412">Biferale et al., 2012</a></figcaption>
 </figure>
 <p>Later numerical work suggests this inverse-cascade regime is fragile: introducing even a small fraction of heterochiral interactions can quickly restore the usual forward cascade. The switch behaves like a phase transition, only nearly pure chirality produces a robust inverse cascade. This fragility also helps explain why ordinary 3D turbulence, which naturally mixes both helicities, is dominated by forward cascade.</p>
-<h2 id="quasi-two-dimensional-flows" tabindex="-1">(Quasi-)two-dimensional flows</h2>
+<h2 id="(quasi-)two-dimensional-flows" tabindex="-1">(Quasi-)two-dimensional flows</h2>
 <p>Inverse cascades are well-known in flows that are 2D or nearly 2D-geophysical flows (oceans, atmosphere) or strongly anisotrpic system (e.g., rapid rotation). The natural hypothesis is,</p>
 <blockquote>
 <p>If a globally 3D flow develops locally quasi-2D motion, then inverse transfer can appear in those regions.</p>
@@ -112,12 +108,9 @@ If we see <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><
 <p>If the eigenframes align strongly, the contraction <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>−</mo><mover accent="true"><mi>τ</mi><mo>~</mo></mover><mo>:</mo><mover accent="true"><mi>S</mi><mo>~</mo></mover></mrow><annotation encoding="application/x-tex">-\tilde{\tau}:\tilde{S}</annotation></semantics></math></span> can be large in magnitude, hence an efficient scale-to-scale transfer, vice versa. Eddy-viscosity closures often assume <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover accent="true"><mi>τ</mi><mo>~</mo></mover><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>∝</mo><mo>−</mo><msub><mover accent="true"><mi>S</mi><mo>~</mo></mover><mrow><mi>i</mi><mi>j</mi></mrow></msub></mrow><annotation encoding="application/x-tex">\tilde{\tau}_{ij}\propto -\tilde{S}_{ij}</annotation></semantics></math></span>, i.e. strong alignment by construction. But this assumption can artificially maximize <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mi mathvariant="normal">Π</mi><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">|\Pi|</annotation></semantics></math></span>, contributing to the tendency of such models to be over-dissipative.</p>
 <p>In an idealized 2D limit, the strain and stress structures exhibit paired eigenvalues (e.g. <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>λ</mi><mn>1</mn></msub><mo>=</mo><mo>−</mo><msub><mi>λ</mi><mn>3</mn></msub></mrow><annotation encoding="application/x-tex">\lambda_{1}=-\lambda_{3}</annotation></semantics></math></span>), reflecting the reduced dimensionality. As the local dynamics approach this limit, the transfer geometry changes: the standard 3D downscale route becomes less effective, and backscatter or inverse transfer becomes more likely. So the quasi-2D route to inverse cascade is not &quot;helicity-domanited,&quot; but effective reduction of degrees of freedom and a corresponding reconfiguration of how nonlinear transfer can continue.</p>
 
-              </div>
-            
-          
-        </td>
-      </tr>
-    </table>
+        </div>
+      
+    </div>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         if (window.Han) {

@@ -6,8 +6,11 @@ han: false
 
 {% set posts = collections.post | reverse %}
 {% set categoryGroups = posts | groupByCategory %}
-{% set latest = posts | first %}
-{% set statusMarkdown = "**Status**: I am in your extended network." %}
+{% if posts | length %}
+  {% set initialPostId = "post-" + posts[0].fileSlug %}
+{% else %}
+  {% set initialPostId = "" %}
+{% endif %}
 
 <div class="profile-header">
   <div class="profile-name">
@@ -35,7 +38,7 @@ han: false
           <a href="#">View Pics</a>
         </div>
         <div class="status-note">
-          {{ statusMarkdown | markdownify | safe }}
+          <p><strong>Status</strong>: I am in your extended network.</p>
         </div>
       </div>
     </div>
@@ -46,7 +49,7 @@ han: false
         {% for post in posts %}
           {% set postId = "post-" + post.fileSlug %}
           {% set tocItems = post.templateContent | tocFromHtml(postId) %}
-          <div class="toc-items{% if post == latest %} is-active{% endif %}" data-post-id="{{ postId }}">
+          <div class="toc-items{% if postId == initialPostId %} is-active{% endif %}" data-post-id="{{ postId }}">
             {% if tocItems and (tocItems | length) %}
               <ul class="toc-list">
                 {% for item in tocItems %}
@@ -76,7 +79,7 @@ han: false
                   <li class="post-item">
                     <div class="post-date">{{ post.date | utcDate }}</div>
                     <a
-                      class="post-link{% if post == latest %} is-active{% endif %}"
+                      class="post-link{% if postId == initialPostId %} is-active{% endif %}"
                       href="#{{ postId }}"
                       data-post-id="{{ postId }}"
                     >
@@ -96,37 +99,27 @@ han: false
     <div class="panel">
       <div class="panel-title">Latest Blog Entry</div>
       <div class="panel-body">
-        {% if latest %}
+        {% if posts | length %}
           <div class="post-panels">
             {% for post in posts %}
               {% set postId = "post-" + post.fileSlug %}
-              {% set typography = post.data.categories | typographyConfig %}
-              <article class="post-panel{% if post == latest %} is-active{% endif %}" id="{{ postId }}">
+              {% set typoClass = post.data.categories | typographyConfig %}
+              <article class="post-panel{% if postId == initialPostId %} is-active{% endif %}" id="{{ postId }}">
                 <h1 class="latest-title">{{ post.data.title }}</h1>
                 <div class="latest-date">
                   {{ post.date | utcDate }}
                   <span class="latest-category">
                     Category:
                     {% if post.data.categories %}
-                      {% if post.data.categories | length %}
-                        {{ post.data.categories | join(", ") }}
-                      {% else %}
-                        {{ post.data.categories }}
-                      {% endif %}
+                      {{ post.data.categories | join(", ") }}
                     {% else %}
                       Uncategorized
                     {% endif %}
                   </span>
                 </div>
-                {% if typography.useHan %}
-                  <div class="latest-content han-init-context{% if typography.hanClass %} {{ typography.hanClass }}{% endif %}">
-                    {{ post.templateContent | prefixHeadings(postId) | safe }}
-                  </div>
-                {% else %}
-                  <div class="latest-content {{ typography.wrapperClass }}">
-                    {{ post.templateContent | prefixHeadings(postId) | safe }}
-                  </div>
-                {% endif %}
+                <div class="latest-content {{ typoClass }}">
+                  {{ post.templateContent | prefixHeadings(postId) | safe }}
+                </div>
               </article>
             {% endfor %}
           </div>
@@ -145,7 +138,6 @@ han: false
     const links = document.querySelectorAll(".post-link");
     if (!panels.length) return;
 
-    const panelIds = new Set(Array.from(panels).map((panel) => panel.id));
     const activate = (id) => {
       panels.forEach((panel) => {
         panel.classList.toggle("is-active", panel.id === id);
@@ -158,9 +150,47 @@ han: false
       });
     };
 
-    const hashId = window.location.hash.slice(1);
-    const initial = panelIds.has(hashId) ? hashId : panels[0].id;
-    activate(initial);
+    const resolveHashTarget = (id) => {
+      if (!id) return null;
+
+      const exact = document.getElementById(id);
+      if (exact) {
+        const panel = exact.classList.contains("post-panel") ? exact : exact.closest(".post-panel");
+        if (panel) return { panel, target: exact };
+      }
+
+      const panel = Array.from(panels).find((candidate) => id.startsWith(`${candidate.id}--`));
+      if (!panel) return null;
+
+      const localId = id.slice(panel.id.length + 2);
+      const target = Array.from(panel.querySelectorAll("[id]")).find((element) => {
+        return element.id === id || element.id === localId;
+      });
+
+      return { panel, target: target || panel };
+    };
+
+    const scrollToTarget = (target) => {
+      if (!target) return;
+      requestAnimationFrame(() => {
+        target.scrollIntoView({ block: "start" });
+      });
+    };
+
+    const syncToHash = (id) => {
+      const resolved = resolveHashTarget(id);
+      if (resolved) {
+        activate(resolved.panel.id);
+        if (resolved.target && resolved.target !== resolved.panel) {
+          scrollToTarget(resolved.target);
+        }
+        return;
+      }
+
+      activate(panels[0].id);
+    };
+
+    syncToHash(window.location.hash.slice(1));
 
     links.forEach((link) => {
       link.addEventListener("click", (event) => {
@@ -169,12 +199,12 @@ han: false
         if (!id) return;
         history.replaceState(null, "", `#${id}`);
         activate(id);
+        scrollToTarget(document.getElementById(id));
       });
     });
 
     window.addEventListener("hashchange", () => {
-      const id = window.location.hash.slice(1);
-      if (panelIds.has(id)) activate(id);
+      syncToHash(window.location.hash.slice(1));
     });
   })();
 </script>
