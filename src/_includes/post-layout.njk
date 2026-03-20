@@ -1,0 +1,13 @@
+---
+layout: base.njk
+han: false
+---
+
+{% set posts = collections.post | reverse %}
+{% set categoryGroups = posts | groupByCategory %}
+{% set currentPost = posts | findPostByUrl(page.url) %}
+{% set currentContent = content %}
+{% set currentTocItems = content | tocFromHtml %}
+{% set panelTitle = "Blog Entry" %}
+
+{% include "post-shell.njk" %}

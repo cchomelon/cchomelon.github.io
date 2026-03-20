@@ -15,6 +15,110 @@
   /* font-family: "AutoMix"; */
 }
 
+.typo-literature,
+.latest-content.typo-literature {
+  font-family: "RHHorneOrion", "Songti TC", "Hiragino Mincho ProN", "Yu Mincho", serif;
+}
+
+.typo-literature :is(
+  p,
+  li,
+  blockquote,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  em,
+  strong,
+  q,
+  cite,
+  h-char,
+  h-inner,
+  h-cs,
+  h-ru,
+  h-jinze
+) {
+  font-family: "RHHorneOrion", "Songti TC", "Hiragino Mincho ProN", "Yu Mincho", serif !important;
+}
+
+.bilingual-poem {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 3rem;
+  row-gap: 0.35rem;
+  align-items: start;
+  margin: 1.5rem 0;
+}
+
+.bilingual-poem-original,
+.bilingual-poem-translation {
+  min-width: 0;
+}
+
+.bilingual-poem-original {
+  text-align: left;
+  font-family: "RHHorneOrion", "Songti TC", serif !important;
+}
+
+.bilingual-poem-original :is(
+  em,
+  strong,
+  i,
+  b,
+  span,
+  h-char,
+  h-inner,
+  h-cs,
+  h-ru,
+  h-jinze
+) {
+  font-family: "RHHorneOrion", "Songti TC", serif !important;
+}
+
+.bilingual-poem-translation {
+  text-align: right;
+  justify-self: end;
+  color: #3f3f3f;
+}
+
+.bilingual-poem-translation:lang(zh),
+.bilingual-poem-translation:lang(zh-Hans),
+.bilingual-poem-translation:lang(zh-Hant),
+.bilingual-poem-translation:lang(zh-CN),
+.bilingual-poem-translation:lang(zh-HK),
+.bilingual-poem-translation:lang(zh-TW) {
+  font-family: "Songti TC", "Hiragino Mincho ProN", "Yu Mincho", serif !important;
+  font-weight: 700;
+}
+
+.bilingual-poem-translation.is-empty {
+  visibility: hidden;
+}
+
+.bilingual-poem-break {
+  grid-column: 1 / -1;
+  height: 0.9rem;
+}
+
+@media (max-width: 820px) {
+  .bilingual-poem {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 0.25rem;
+  }
+
+  .bilingual-poem-translation {
+    justify-self: stretch;
+    padding-left: 1.5rem;
+  }
+
+  .bilingual-poem-break {
+    height: 1.1rem;
+  }
+}
+
 .latest-content.han-init-context .han-vertical {
   max-height: 30vh !important;
   overflow: auto;

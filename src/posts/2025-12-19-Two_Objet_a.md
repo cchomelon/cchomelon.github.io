@@ -1,5 +1,5 @@
 ---
-layout: base.njk
+layout: post-layout.njk
 title: 兩種對象a
 tags: post
 categories: ["Philosophy"]

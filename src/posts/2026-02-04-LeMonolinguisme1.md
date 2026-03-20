@@ -1,5 +1,5 @@
 ---
-layout: base.njk
+layout: post-layout.njk
 title: 德里達《他者的單語主義》：第一節［翻譯］
 tags: post
 categories: ["Philosophy"]

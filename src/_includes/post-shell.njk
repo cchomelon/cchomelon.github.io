@@ -1,0 +1,104 @@
+<div class="profile-header">
+  <div class="profile-name">
+    <span class="font-comic">schizo</span><span class="font-mono">posting</span>
+  </div>
+  <div class="profile-status"><span class="font-DOS">0x5F3759DF</span></div>
+</div>
+
+<div class="columns" data-post-shell data-current-post-url="{{ currentPost.url | url }}">
+  <aside class="sidebar">
+    <div class="panel about-panel">
+      <div class="panel-title">About</div>
+      <div class="panel-body">
+        <div class="profile-card">
+          <div class="profile-photo">
+            <img src="{{ '/assets/images/profile.jpeg' | url }}" alt="Jack" class="profile-photo-img">
+          </div>
+          <div class="profile-meta">
+            <div>Jack,</div>
+            <div>melon,</div>
+            <div>Bebubebu</div>
+          </div>
+        </div>
+        <div class="profile-links">
+          <a href="#">View Pics</a>
+        </div>
+        <div class="status-note">
+          <p><strong>Status</strong>: I am in your extended network.</p>
+        </div>
+      </div>
+    </div>
+
+    <details class="panel toc-panel" open>
+      <summary class="panel-title">Table of Contents</summary>
+      <div class="panel-body" data-post-toc-region>
+        {% if currentTocItems and (currentTocItems | length) %}
+          <ul class="toc-list">
+            {% for item in currentTocItems %}
+              <li class="toc-item level-{{ item.level }}">
+                <a href="#{{ item.id }}">{{ item.text }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <div class="toc-empty">No headings yet.</div>
+        {% endif %}
+      </div>
+    </details>
+
+    <details class="panel collapse-panel" open>
+      <summary class="panel-title">Blog Index</summary>
+      <div class="panel-body">
+        <div class="category-list">
+          {% for group in categoryGroups %}
+            <details class="category-group" open data-ui="plain">
+              <summary class="category-title">{{ group.category }}</summary>
+              <ul class="post-list">
+                {% for post in group.items %}
+                  {% set postUrl = post.url | url %}
+                  {% set currentUrl = currentPost.url | url %}
+                  <li class="post-item">
+                    <div class="post-date">{{ post.date | utcDate }}</div>
+                    <a
+                      class="post-link{% if postUrl == currentUrl %} is-active{% endif %}"
+                      href="{{ postUrl }}"
+                      data-post-link
+                      data-post-url="{{ postUrl }}"
+                    >
+                      {{ post.data.title }}
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </details>
+          {% endfor %}
+        </div>
+      </div>
+    </details>
+  </aside>
+
+  <main class="content">
+    <div class="panel">
+      <div class="panel-title" data-post-panel-label>{{ panelTitle or "Blog Entry" }}</div>
+      <div class="panel-body" data-post-panel-container>
+        <article class="post-panel is-active" data-post-panel data-post-url="{{ currentPost.url | url }}">
+          <h1 class="latest-title" data-post-title>{{ currentPost.data.title }}</h1>
+          <div class="latest-date" data-post-meta>
+            {{ currentPost.date | utcDate }}
+            <span class="latest-category">
+              Category:
+              {% if currentPost.data.categories %}
+                {{ currentPost.data.categories | join(", ") }}
+              {% else %}
+                Uncategorized
+              {% endif %}
+            </span>
+          </div>
+          <div class="latest-content {{ currentPost.data.categories | typographyConfig }}" data-post-content>
+            {{ currentContent | safe }}
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+</div>

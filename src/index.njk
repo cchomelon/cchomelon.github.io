@@ -7,204 +7,23 @@ han: false
 {% set posts = collections.post | reverse %}
 {% set categoryGroups = posts | groupByCategory %}
 {% if posts | length %}
-  {% set initialPostId = "post-" + posts[0].fileSlug %}
+  {% set currentPost = posts[0] %}
+  {% set currentContent = currentPost.templateContent %}
+  {% set currentTocItems = currentPost.templateContent | tocFromHtml %}
+  {% set panelTitle = "Latest Blog Entry" %}
+  {% include "post-shell.njk" %}
 {% else %}
-  {% set initialPostId = "" %}
-{% endif %}
-
-<div class="profile-header">
-  <div class="profile-name">
-    <span class="font-comic">schizo</span><span class="font-mono">posting</span>
+  <div class="profile-header">
+    <div class="profile-name">
+      <span class="font-comic">schizo</span><span class="font-mono">posting</span>
+    </div>
+    <div class="profile-status"><span class="font-DOS">0x5F3759DF</span></div>
   </div>
-  <div class="profile-status"><span class="font-DOS">0x5F3759DF</span></div>
-</div>
 
-<div class="columns">
-  <aside class="sidebar">
-    <div class="panel">
-      <div class="panel-title">About</div>
-      <div class="panel-body">
-        <div class="profile-card">
-          <div class="profile-photo">
-            <img src="{{ '/assets/images/profile.jpeg' | url }}" alt="Jack" class="profile-photo-img">
-          </div>
-          <div class="profile-meta">
-            <div>Jack,</div>
-            <div>melon,</div>
-            <div>Bebubebu</div>
-          </div>
-        </div>
-        <div class="profile-links">
-          <a href="#">View Pics</a>
-        </div>
-        <div class="status-note">
-          <p><strong>Status</strong>: I am in your extended network.</p>
-        </div>
-      </div>
+  <div class="panel" style="margin-top: 12px;">
+    <div class="panel-title">Latest Blog Entry</div>
+    <div class="panel-body">
+      <p>No posts yet.</p>
     </div>
-
-    <details class="panel toc-panel" open>
-      <summary class="panel-title">Table of Contents</summary>
-      <div class="panel-body">
-        {% for post in posts %}
-          {% set postId = "post-" + post.fileSlug %}
-          {% set tocItems = post.templateContent | tocFromHtml(postId) %}
-          <div class="toc-items{% if postId == initialPostId %} is-active{% endif %}" data-post-id="{{ postId }}">
-            {% if tocItems and (tocItems | length) %}
-              <ul class="toc-list">
-                {% for item in tocItems %}
-                  <li class="toc-item level-{{ item.level }}">
-                    <a href="#{{ item.id }}">{{ item.text }}</a>
-                  </li>
-                {% endfor %}
-              </ul>
-            {% else %}
-              <div class="toc-empty">No headings yet.</div>
-            {% endif %}
-          </div>
-        {% endfor %}
-      </div>
-    </details>
-
-    <details class="panel collapse-panel" open>
-      <summary class="panel-title">Blog Index</summary>
-      <div class="panel-body">
-        <div class="category-list">
-          {% for group in categoryGroups %}
-            <details class="category-group" open data-ui="plain">
-              <summary class="category-title">{{ group.category }}</summary>
-              <ul class="post-list">
-                {% for post in group.items %}
-                  {% set postId = "post-" + post.fileSlug %}
-                  <li class="post-item">
-                    <div class="post-date">{{ post.date | utcDate }}</div>
-                    <a
-                      class="post-link{% if postId == initialPostId %} is-active{% endif %}"
-                      href="#{{ postId }}"
-                      data-post-id="{{ postId }}"
-                    >
-                      {{ post.data.title }}
-                    </a>
-                  </li>
-                {% endfor %}
-              </ul>
-            </details>
-          {% endfor %}
-        </div>
-      </div>
-    </details>
-  </aside>
-
-  <main class="content">
-    <div class="panel">
-      <div class="panel-title">Latest Blog Entry</div>
-      <div class="panel-body">
-        {% if posts | length %}
-          <div class="post-panels">
-            {% for post in posts %}
-              {% set postId = "post-" + post.fileSlug %}
-              {% set typoClass = post.data.categories | typographyConfig %}
-              <article class="post-panel{% if postId == initialPostId %} is-active{% endif %}" id="{{ postId }}">
-                <h1 class="latest-title">{{ post.data.title }}</h1>
-                <div class="latest-date">
-                  {{ post.date | utcDate }}
-                  <span class="latest-category">
-                    Category:
-                    {% if post.data.categories %}
-                      {{ post.data.categories | join(", ") }}
-                    {% else %}
-                      Uncategorized
-                    {% endif %}
-                  </span>
-                </div>
-                <div class="latest-content {{ typoClass }}">
-                  {{ post.templateContent | prefixHeadings(postId) | safe }}
-                </div>
-              </article>
-            {% endfor %}
-          </div>
-        {% else %}
-          <p>No posts yet.</p>
-        {% endif %}
-      </div>
-    </div>
-  </main>
-</div>
-
-<script>
-  (function () {
-    const panels = document.querySelectorAll(".post-panel");
-    const tocBlocks = document.querySelectorAll(".toc-items");
-    const links = document.querySelectorAll(".post-link");
-    if (!panels.length) return;
-
-    const activate = (id) => {
-      panels.forEach((panel) => {
-        panel.classList.toggle("is-active", panel.id === id);
-      });
-      tocBlocks.forEach((block) => {
-        block.classList.toggle("is-active", block.dataset.postId === id);
-      });
-      links.forEach((link) => {
-        link.classList.toggle("is-active", link.dataset.postId === id);
-      });
-    };
-
-    const resolveHashTarget = (id) => {
-      if (!id) return null;
-
-      const exact = document.getElementById(id);
-      if (exact) {
-        const panel = exact.classList.contains("post-panel") ? exact : exact.closest(".post-panel");
-        if (panel) return { panel, target: exact };
-      }
-
-      const panel = Array.from(panels).find((candidate) => id.startsWith(`${candidate.id}--`));
-      if (!panel) return null;
-
-      const localId = id.slice(panel.id.length + 2);
-      const target = Array.from(panel.querySelectorAll("[id]")).find((element) => {
-        return element.id === id || element.id === localId;
-      });
-
-      return { panel, target: target || panel };
-    };
-
-    const scrollToTarget = (target) => {
-      if (!target) return;
-      requestAnimationFrame(() => {
-        target.scrollIntoView({ block: "start" });
-      });
-    };
-
-    const syncToHash = (id) => {
-      const resolved = resolveHashTarget(id);
-      if (resolved) {
-        activate(resolved.panel.id);
-        if (resolved.target && resolved.target !== resolved.panel) {
-          scrollToTarget(resolved.target);
-        }
-        return;
-      }
-
-      activate(panels[0].id);
-    };
-
-    syncToHash(window.location.hash.slice(1));
-
-    links.forEach((link) => {
-      link.addEventListener("click", (event) => {
-        event.preventDefault();
-        const id = link.dataset.postId;
-        if (!id) return;
-        history.replaceState(null, "", `#${id}`);
-        activate(id);
-        scrollToTarget(document.getElementById(id));
-      });
-    });
-
-    window.addEventListener("hashchange", () => {
-      syncToHash(window.location.hash.slice(1));
-    });
-  })();
-</script>
+  </div>
+{% endif %}

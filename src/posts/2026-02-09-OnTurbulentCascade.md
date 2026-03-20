@@ -1,5 +1,5 @@
 ---
-layout: base.njk
+layout: post-layout.njk
 title: On Turbulent Cascade
 tags: post
 categories: ["Physics"]

@@ -1,5 +1,5 @@
 ---
-layout: base.njk
+layout: post-layout.njk
 title: Machinic Deleuzoid
 tags: post
 categories: ["Philosophy"]
